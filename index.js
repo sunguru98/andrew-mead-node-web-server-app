@@ -3,7 +3,7 @@ const hbs = require("hbs");
 const fs = require("fs");
 
 
-
+let serverPort = process.env.PORT||3000;
 let app = express();
 
 hbs.registerPartials(__dirname+"/views/partials");
@@ -14,10 +14,10 @@ app.use((request,response,next)=>{
     next();
 })
 
-app.use((req,res,next)=>{
-    res.render("maintenance.hbs");
+// app.use((req,res,next)=>{
+//     res.render("maintenance.hbs");
     
-})
+// })
 
 
 app.set("view engine","hbs");
@@ -46,4 +46,6 @@ app.get("/bad",(request,response)=>{
     console.log(request);
 });
 
-app.listen(9998);
+app.listen(serverPort,()=>{
+    console.log("The port is "+serverPort);
+})
