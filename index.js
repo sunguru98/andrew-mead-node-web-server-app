@@ -7,6 +7,7 @@ let serverPort = process.env.PORT||3000;
 let app = express();
 
 hbs.registerPartials(__dirname+"/views/partials");
+
 app.use((request,response,next)=>{
     log = `${new Date().toString()} ${request.method} ${request.url}`;
     console.log(log);
@@ -35,6 +36,15 @@ app.get("/contact-us",(request,response)=>{
         pageTitle:"Contact Us page",
         pageMessage:"This is the Contact-us page",
         welcomeMessage:"We are here in the contact us",
+        copyrightYear:new Date().getFullYear(),
+    });   
+});
+
+app.get("/projects",(request,response)=>{
+    response.render("projects.hbs",{
+        pageTitle:"Projects page",
+        pageMessage:"This is the Projects page",
+        welcomeMessage:"We are here in the Projects Page",
         copyrightYear:new Date().getFullYear(),
     });   
 });
